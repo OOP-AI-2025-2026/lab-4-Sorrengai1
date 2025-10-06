@@ -20,7 +20,6 @@ public class MinMaxAccount extends BankingAccount {
         super.credit(c);
         updateMinMax();
     }
-
     private void updateMinMax() {
         int current = super.getBalance();
         if (current < minBalance) {

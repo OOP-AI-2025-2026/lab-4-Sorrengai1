@@ -7,7 +7,6 @@ public class Point3D extends Point {
         super();
         this.z = 0;
     }
-
     public Point3D(int x, int y, int z) {
         super(x, y);
         this.z = z;
@@ -30,7 +29,6 @@ public class Point3D extends Point {
         int y = getY();
         return Math.sqrt(x * x + y * y + this.z * this.z);
     }
-
     @Override
     public double distance(Point p) {
         int dx = this.getX() - p.getX();
@@ -43,14 +41,12 @@ public class Point3D extends Point {
             return Math.sqrt(dx * dx + dy * dy);
         }
     }
-
     public double distance(Point3D p) {
         int dx = this.getX() - p.getX();
         int dy = this.getY() - p.getY();
         int dz = this.z - p.getZ();
         return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
-
     @Override
     public String toString() {
         return "(" + getX() + ", " + getY() + ", " + this.z + ")";
