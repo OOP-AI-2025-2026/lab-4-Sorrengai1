@@ -1,13 +1,14 @@
 package ua.opnu.java.inheritance.account;
 
 public class Startup {
-    private int initialBalanc;
+    private int initialBalance;
 
-    public Startup(int initialBalanc) {
-        this.initialBalanc = initialBalanc;
+    public Startup(int initialBalance) {
+        this.initialBalance = initialBalance;
     }
+
     public int getBalance() {
-        return initialBalanc;
+        return initialBalance;
     }
 }
 

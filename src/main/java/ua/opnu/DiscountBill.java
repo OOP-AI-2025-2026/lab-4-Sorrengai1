@@ -1,24 +1,19 @@
 import ua.opnu.java.inheritance.bill.Employee;
 import ua.opnu.java.inheritance.bill.Item;
 import ua.opnu.java.inheritance.bill.GroceryBill;
-/**
- * Клас GroceryBill моделює чек з урахуванням знижок
- * для постійних клієнтів.
- */
+
 public final class DiscountBill extends GroceryBill {
-    /** Ознака, чи є покупець постійним клієнтом.*/
-    private boolean regularCustomer;
-    /** Кількість товарів зі знижкою.*/
+    private final boolean regularCustomer;
     private int discountCount = 0;
-    /** Загальна сума знижки у грн.*/
     private double discountAmount = 0;
-    /** Базове значення 100 для розрахунку відсотків.*/
+
     private static final double PERCENT_BASE = 100.0;
 
     public DiscountBill(final Employee clerk, final boolean regularCustomer) {
         super(clerk);
         this.regularCustomer = regularCustomer;
     }
+
     @Override
     public void add(final Item i) {
         super.add(i);
@@ -27,18 +22,22 @@ public final class DiscountBill extends GroceryBill {
             discountAmount += i.getDiscount();
         }
     }
+
     @Override
     public double getTotal() {
         double total = super.getTotal();
         double finalAmount = regularCustomer ? total - discountAmount : total;
         return Math.round(finalAmount * PERCENT_BASE) / PERCENT_BASE;
     }
+
     public int getDiscountCount() {
         return discountCount;
     }
+
     public double getDiscountAmount() {
         return discountAmount;
     }
+
     public double getDiscountPercent() {
         double total = super.getTotal();
         if (!regularCustomer || total == 0.0) {

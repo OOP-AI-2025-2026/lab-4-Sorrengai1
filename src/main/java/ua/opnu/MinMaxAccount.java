@@ -10,16 +10,19 @@ public class MinMaxAccount extends BankingAccount {
         this.minBalance = initialBalance;
         this.maxBalance = initialBalance;
     }
+
     @Override
     public void debit(Debit d) {
         super.debit(d);
         updateMinMax();
     }
+
     @Override
     public void credit(Credit c) {
         super.credit(c);
         updateMinMax();
     }
+
     private void updateMinMax() {
         int current = super.getBalance();
         if (current < minBalance) {
@@ -29,10 +32,12 @@ public class MinMaxAccount extends BankingAccount {
             maxBalance = current;
         }
     }
-        public int getMin() {
-            return minBalance;
-        }
-        public int getMax() {
-            return maxBalance;
-        }
+
+    public int getMin() {
+        return minBalance;
+    }
+
+    public int getMax() {
+        return maxBalance;
+    }
 }

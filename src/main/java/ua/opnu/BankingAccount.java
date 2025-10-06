@@ -6,20 +6,22 @@ public class BankingAccount {
     public BankingAccount(Startup s) {
         this.balance = s.getBalance();
     }
-    public void debit(Debit d) {
+
+    public void debit(ua.opnu.java.inheritance.account.Debit d) {
         this.balance += d.getAmount();
     }
+
     public void credit(Credit c) {
         this.balance += c.getAmount();
     }
+
     public int getBalance() {
         return balance;
     }
+
     @Override
     public boolean equals(Object o) {
-        if (this.getBalance() == 0) {
-            return true;
-        }
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
@@ -27,8 +29,13 @@ public class BankingAccount {
         return balance == that.balance;
     }
     @Override
+    public  int hashCode() {
+        return Integer.hashCode(balance);
+    }
+
+    @Override
     public String toString() {
-        return "BankingAccount"
-                + "balance=" + balance;
+        return "BankingAccount{"
+                + "balance=" + balance + '}';
     }
 }
