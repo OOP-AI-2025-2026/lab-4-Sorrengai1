@@ -1,4 +1,5 @@
 package ua.opnu.java.inheritance.account;
+import java.util.Objects;
 
 public class BankingAccount {
     private int balance;
@@ -7,7 +8,7 @@ public class BankingAccount {
         this.balance = s.getBalance();
     }
 
-    public void debit(ua.opnu.java.inheritance.account.Debit d) {
+    public void debit(Debit d) {
         this.balance += d.getAmount();
     }
 

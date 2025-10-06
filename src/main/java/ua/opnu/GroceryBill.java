@@ -12,7 +12,7 @@ public class GroceryBill {
         this.items = new ArrayList<>();
     }
 
-    public  void add(Item i) {
+    public void add(Item i) {
         items.add(i);
     }
 
