@@ -3,7 +3,7 @@ package ua.opnu.java.inheritance.account;
 public class Credit {
     private int amount;
 
-    public Credit(final int balance) {
+    public Credit(int balance) {
         this.amount = balance;
     }
 

@@ -6,11 +6,11 @@ public class GroceryBill {
     private Employee clerk;
     private final List<Item> items;
 
-    public GroceryBill(final Employee clerk) {
+    public GroceryBill(Employee clerk) {
         this.clerk = clerk;
         this.items = new ArrayList<>();
     }
-    public  void add(final Item i) {
+    public  void add(Item i) {
         items.add(i);
     }
     public double getTotal() {

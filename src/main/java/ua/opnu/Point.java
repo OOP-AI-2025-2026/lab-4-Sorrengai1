@@ -7,17 +7,17 @@ public class Point {
     public Point() {
         this(0, 0);
     }
-    public Point(final Point p) {
+    public Point(Point p) {
         this(p.x, p.y);
     }
-    public Point(final int x, final int y) {
+    public Point(int x, int y) {
         this.x = x;
         this.y = y;
     }
     public double distanceFromOrigin() {
         return Math.sqrt(x * x + y * y);
     }
-    public double distance(final Point p) {
+    public double distance(Point p) {
         int dx = this.x - p.x;
         int dy = this.y - p.y;
         return Math.sqrt(dx * dx + dy * dy);
