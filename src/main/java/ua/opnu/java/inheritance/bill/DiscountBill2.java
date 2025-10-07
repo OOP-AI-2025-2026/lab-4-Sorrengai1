@@ -1,50 +1,55 @@
-import ua.opnu.java.inheritance.bill.Employee;
-import ua.opnu.java.inheritance.bill.Item;
-import ua.opnu.java.inheritance.bill.GroceryBill;
+package ua.opnu.java.inheritance.bill;
 
-public final class DiscountBill extends GroceryBill {
+public final class DiscountBill2 {
+    /**
+     * Внутрішній рахунок, який зберігає список товарів.
+     * */
+    private final GroceryBill bill;
     private final boolean regularCustomer;
     private int discountCount = 0;
     private double discountAmount = 0;
-
     private static final double PERCENT_BASE = 100.0;
 
-    public DiscountBill(final Employee clerk, final boolean regularCustomer) {
-        super(clerk);
+    public DiscountBill2(final Employee clerk, final boolean regularCustomer) {
+        this.bill = new GroceryBill(clerk);
         this.regularCustomer = regularCustomer;
     }
 
-    @Override
     public void add(final Item i) {
-        super.add(i);
+        bill.add(i);
         if (regularCustomer && i.getDiscount() > 0.0) {
             discountCount++;
             discountAmount += i.getDiscount();
         }
     }
 
-    @Override
     public double getTotal() {
-        double total = super.getTotal();
-        double finalAmount = regularCustomer ? total - discountAmount : total;
-        return Math.round(finalAmount * PERCENT_BASE) / PERCENT_BASE;
+        double total = bill.getTotal();
+        if (regularCustomer) {
+            total -= discountAmount;
+        }
+        return Math.round(total * PERCENT_BASE) / PERCENT_BASE;
     }
 
     public int getDiscountCount() {
-        return discountCount;
+        return regularCustomer ? discountCount : 0;
     }
 
     public double getDiscountAmount() {
-        return discountAmount;
+        return regularCustomer ? discountAmount : 0.0;
     }
 
     public double getDiscountPercent() {
-        double total = super.getTotal();
+        double total = bill.getTotal();
         if (!regularCustomer || total == 0.0) {
             return 0.0;
         }
         double percent = PERCENT_BASE - ((total - discountAmount)
                 * PERCENT_BASE / total);
         return Math.round(percent * 1e13) / 1e13;
+    }
+
+    public Employee getClerk() {
+        return bill.getClerk();
     }
 }

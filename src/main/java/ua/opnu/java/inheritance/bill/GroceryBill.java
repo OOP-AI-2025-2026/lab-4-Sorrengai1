@@ -3,6 +3,10 @@ package ua.opnu.java.inheritance.bill;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Клас представляє звичайний рахунок за покупки
+ * без урахування знижок. Містить сисок товарів та дані про працівника.
+ */
 public class GroceryBill {
     private final Employee clerk;
     private final List<Item> items;

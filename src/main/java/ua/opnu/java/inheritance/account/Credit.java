@@ -1,7 +1,7 @@
 package ua.opnu.java.inheritance.account;
 
 public class Credit {
-    private int amount;
+    private final int amount;
 
     public Credit(int amount) {
         this.amount = amount;

@@ -1,52 +1,52 @@
 package ua.opnu.java.inheritance.bill;
 
-public final class DiscountBill2 {
-    private GroceryBill bill;
-    private boolean regularCustomer;
+/**
+ * Клас представляє рахунок у магазині, чкий може містити знижки
+ * для постійних клієнтів.
+ */
+public final class DiscountBill extends GroceryBill {
+    private final boolean regularCustomer;
     private int discountCount = 0;
     private double discountAmount = 0;
+
     private static final double PERCENT_BASE = 100.0;
 
-    public DiscountBill2(final Employee clerk, final boolean regularCustomer) {
-        this.bill = new GroceryBill(clerk);
+    public DiscountBill(final Employee clerk, final boolean regularCustomer) {
+        super(clerk);
         this.regularCustomer = regularCustomer;
     }
 
+    @Override
     public void add(final Item i) {
-        bill.add(i);
+        super.add(i);
         if (regularCustomer && i.getDiscount() > 0.0) {
             discountCount++;
             discountAmount += i.getDiscount();
         }
     }
 
+    @Override
     public double getTotal() {
-        double total = bill.getTotal();
-        if (regularCustomer) {
-            total -= discountAmount;
-        }
-        return Math.round(total * PERCENT_BASE) / PERCENT_BASE;
+        double total = super.getTotal();
+        double finalAmount = regularCustomer ? total - discountAmount : total;
+        return Math.round(finalAmount * PERCENT_BASE) / PERCENT_BASE;
     }
 
     public int getDiscountCount() {
-        return regularCustomer ? discountCount : 0;
+        return discountCount;
     }
 
     public double getDiscountAmount() {
-        return regularCustomer ? discountAmount : 0.0;
+        return discountAmount;
     }
 
     public double getDiscountPercent() {
-        double total = bill.getTotal();
+        double total = super.getTotal();
         if (!regularCustomer || total == 0.0) {
             return 0.0;
         }
         double percent = PERCENT_BASE - ((total - discountAmount)
                 * PERCENT_BASE / total);
         return Math.round(percent * 1e13) / 1e13;
-    }
-
-    public Employee getClerk() {
-        return bill.getClerk();
     }
 }

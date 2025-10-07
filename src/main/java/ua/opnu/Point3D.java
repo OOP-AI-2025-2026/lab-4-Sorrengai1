@@ -7,6 +7,7 @@ public class Point3D extends Point {
         super();
         this.z = 0;
     }
+
     public Point3D(int x, int y, int z) {
         super(x, y);
         this.z = z;
@@ -40,13 +41,9 @@ public class Point3D extends Point {
         int dy = getY() - p.getY();
         int dz = 0;
         if (p instanceof Point3D) {
-            dz = this.z - ((Point3D) p).z;
+            dz = this.z - ((Point3D) p).getX();
         }
         return Math.sqrt(dx * dx + dy * dy + dz * dz);
-    }
-
-    public double distance(Point3D p) {
-        return distance((Point) p); // використовуємо вже перевизначений метод
     }
 
     @Override
